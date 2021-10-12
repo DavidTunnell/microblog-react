@@ -1,6 +1,9 @@
 github: https://github.com/iamshaunjp/Complete-React-Tutorial/tree/lesson-2
 Youtube: https://www.youtube.com/watch?v=j942wKiXFu8&ab_channel=TheNetNinja
 
+https://themes.getbootstrap.com/preview/?theme_id=6122
+https://themes.getbootstrap.com/preview/?theme_id=17640
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
