@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import Home from "./Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Create from "./Create";
 //top use the react router package, surround the whole app with the router component
 function App() {
     return (
@@ -13,8 +14,11 @@ function App() {
                         All routes go in the switch component so only one renders at a time based on route  */}
                     <Switch>
                         {/* add a route for each component AND the component itself nested*/}
-                        <Route path="/">
+                        <Route exact path="/">
                             <Home />
+                        </Route>
+                        <Route path="/create">
+                            <Create />
                         </Route>
                     </Switch>
                 </div>
