@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
 
 const Home = () => {
@@ -26,10 +26,22 @@ const Home = () => {
             id: 3,
         },
     ]);
+    const [name, setName] = useState("mario");
+
     const handleDelete = (id) => {
         const newBlogs = blogs.filter((blog) => blog.id !== id);
         setBlogs(newBlogs);
     };
+
+    //useEffect is a hook that runs every time a component renders (on page load and state change)
+    useEffect(() => {
+        console.log("use effect data");
+        //you can also look with state, but changing it can put you in an infinite loop
+        console.log(name);
+        //if you dont want to always run this every render, pass in a dependency array as a second argument
+        //an empty array makes it only run the 1st time on load, not subsequent state changes
+        //or you can pass state variables, this will only run when those state variables are updated
+    }, [name]);
     return (
         <div className="home">
             <BlogList
@@ -37,10 +49,8 @@ const Home = () => {
                 title="All Blogs"
                 handleDelete={handleDelete}
             />
-            <BlogList
-                blogs={blogs.filter((blog) => blog.author === "mario")}
-                title="Mario's Blogs"
-            />
+            <button onClick={() => setName("luigi")}>change name</button>
+            {name}
         </div>
     );
 };
