@@ -8,15 +8,24 @@ const Home = () => {
     //this is done using hooks (useState hook in particular)
     const [blogs, setBlogs] = useState(null);
     const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
 
     //useEffect is a hook that runs every time a component renders (on page load and state change)
     useEffect(() => {
         fetch("http://localhost:8000/blogs")
             .then((res) => {
+                if (!res.ok) {
+                    throw Error("Could not fetch the data.");
+                }
                 return res.json();
             })
             .then((data) => {
                 setBlogs(data);
+                setIsPending(false);
+                setError(null);
+            })
+            .catch((err) => {
+                setError(err.message);
                 setIsPending(false);
             });
         //you can also look with state, but changing it can put you in an infinite loop
@@ -26,6 +35,8 @@ const Home = () => {
     }, []);
     return (
         <div className="home">
+            {/* conitional rendering for error message to user*/}
+            {error && <div>{error}</div>}
             {/* message to show user while data is loading (while async call is happening)*/}
             {isPending && <div>Loading...</div>}
             {/* need to make sure blogs data is populated from api call before mapping (conditional templating)*/}
