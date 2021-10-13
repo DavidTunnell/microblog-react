@@ -1,41 +1,16 @@
 import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
+import useFetch from "./useFetch";
 
 const Home = () => {
-    //the state of a component refers to the data being used by a component at a point in time
-    //you must use state and not variables because it wont update the page
-    //this is because you must use reactive variables (variables that react looks at to check/watch for state change)
-    //this is done using hooks (useState hook in particular)
-    const [blogs, setBlogs] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
-
-    //useEffect is a hook that runs every time a component renders (on page load and state change)
-    useEffect(() => {
-        fetch("http://localhost:8000/blogs")
-            .then((res) => {
-                if (!res.ok) {
-                    throw Error("Could not fetch the data.");
-                }
-                return res.json();
-            })
-            .then((data) => {
-                setBlogs(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setIsPending(false);
-            });
-        //you can also look with state, but changing it can put you in an infinite loop
-        //if you dont want to always run this every render, pass in a dependency array as a second argument
-        //an empty array makes it only run the 1st time on load, not subsequent state changes
-        //or you can pass state variables, this will only run when those state variables are updated
-    }, []);
+    const {
+        data: blogs,
+        isPending,
+        error,
+    } = useFetch("http://localhost:8000/blogs");
     return (
         <div className="home">
-            {/* conitional rendering for error message to user*/}
+            {/* conditional rendering for error message to user*/}
             {error && <div>{error}</div>}
             {/* message to show user while data is loading (while async call is happening)*/}
             {isPending && <div>Loading...</div>}
