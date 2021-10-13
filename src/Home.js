@@ -7,7 +7,7 @@ const Home = () => {
     //this is because you must use reactive variables (variables that react looks at to check/watch for state change)
     //this is done using hooks (useState hook in particular)
     const [blogs, setBlogs] = useState(null);
-    const [name, setName] = useState("mario");
+    const [isPending, setIsPending] = useState(true);
 
     //useEffect is a hook that runs every time a component renders (on page load and state change)
     useEffect(() => {
@@ -17,6 +17,7 @@ const Home = () => {
             })
             .then((data) => {
                 setBlogs(data);
+                setIsPending(false);
             });
         //you can also look with state, but changing it can put you in an infinite loop
         //if you dont want to always run this every render, pass in a dependency array as a second argument
@@ -25,11 +26,10 @@ const Home = () => {
     }, []);
     return (
         <div className="home">
+            {/* message to show user while data is loading (while async call is happening)*/}
+            {isPending && <div>Loading...</div>}
             {/* need to make sure blogs data is populated from api call before mapping (conditional templating)*/}
-            {blogs && <BlogList
-                blogs={blogs}
-                title="All Blogs"
-            />}
+            {blogs && <BlogList blogs={blogs} title="All Blogs" />}
         </div>
     );
 };
