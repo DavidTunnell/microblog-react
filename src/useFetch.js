@@ -11,7 +11,10 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
     //useEffect is a hook that runs every time a component renders (on page load and state change)
     useEffect(() => {
-        fetch(url)
+        //this will be associated with the fetch and the be used to stop the fetch if needed
+        const abortController = new AbortController();
+        //pass it as a 2nd parameter object
+        fetch(url, { signal: abortController.signal })
             .then((res) => {
                 if (!res.ok) {
                     throw Error("Could not fetch the data.");
@@ -24,9 +27,19 @@ const useFetch = (url) => {
                 setError(null);
             })
             .catch((err) => {
-                setError(err.message);
-                setIsPending(false);
+                //also prevent state update if it is an abort error
+                if (err.name === "AbortError") {
+                    console.log("Fetch was aborted.");
+                } else {
+                    setError(err.message);
+                    setIsPending(false);
+                }
             });
+        //when data is still being fetched when a component changes, an error is produced. This cleanup prevents this issue.
+        //This return fires when the unmount happens (ex: navigating to new blog link), stopping fetch from continuing
+        //by using an abort controller to abort the fetch it is associated with
+        return () => abortController.abort();
+
         //you can also look with state, but changing it can put you in an infinite loop
         //if you dont want to always run this every render, pass in a dependency array as a second argument
         //an empty array makes it only run the 1st time on load, not subsequent state changes
