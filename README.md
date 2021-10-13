@@ -4,6 +4,20 @@ Youtube: https://www.youtube.com/watch?v=j942wKiXFu8&ab_channel=TheNetNinja
 https://themes.getbootstrap.com/preview/?theme_id=6122
 https://themes.getbootstrap.com/preview/?theme_id=17640
 
+## Installation
+
+npm install
+
+npm install -g json-server
+
+and
+
+npm run pseudoApi
+
+or
+
+npx json-server --watch ./data/db.json --port 8000
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

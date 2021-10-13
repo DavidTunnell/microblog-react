@@ -6,51 +6,30 @@ const Home = () => {
     //you must use state and not variables because it wont update the page
     //this is because you must use reactive variables (variables that react looks at to check/watch for state change)
     //this is done using hooks (useState hook in particular)
-    const [blogs, setBlogs] = useState([
-        {
-            title: "My new website",
-            body: "lorem ipsum...",
-            author: "mario",
-            id: 1,
-        },
-        {
-            title: "Welcome party!",
-            body: "lorem ipsum...",
-            author: "yoshi",
-            id: 2,
-        },
-        {
-            title: "Web dev top tips",
-            body: "lorem ipsum...",
-            author: "mario",
-            id: 3,
-        },
-    ]);
+    const [blogs, setBlogs] = useState(null);
     const [name, setName] = useState("mario");
-
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter((blog) => blog.id !== id);
-        setBlogs(newBlogs);
-    };
 
     //useEffect is a hook that runs every time a component renders (on page load and state change)
     useEffect(() => {
-        console.log("use effect data");
+        fetch("http://localhost:8000/blogs")
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                setBlogs(data);
+            });
         //you can also look with state, but changing it can put you in an infinite loop
-        console.log(name);
         //if you dont want to always run this every render, pass in a dependency array as a second argument
         //an empty array makes it only run the 1st time on load, not subsequent state changes
         //or you can pass state variables, this will only run when those state variables are updated
-    }, [name]);
+    }, []);
     return (
         <div className="home">
-            <BlogList
+            {/* need to make sure blogs data is populated from api call before mapping (conditional templating)*/}
+            {blogs && <BlogList
                 blogs={blogs}
                 title="All Blogs"
-                handleDelete={handleDelete}
-            />
-            <button onClick={() => setName("luigi")}>change name</button>
-            {name}
+            />}
         </div>
     );
 };
