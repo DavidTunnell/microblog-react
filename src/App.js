@@ -1,8 +1,10 @@
-import Navbar from "./Navbar";
-import Home from "./Home";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Create from "./components/Create";
+import BlogDetails from "./components/BlogDetails";
+import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Create from "./Create";
-import BlogDetails from "./BlogDetails";
+
 //top use the react router package, surround the whole app with the router component
 function App() {
     return (
@@ -23,6 +25,10 @@ function App() {
                         </Route>
                         <Route path="/blogs/:id">
                             <BlogDetails />
+                        </Route>
+                        {/* all other routes go to a 404 page - must be at bottom*/}
+                        <Route path="*">
+                            <NotFound />
                         </Route>
                     </Switch>
                 </div>

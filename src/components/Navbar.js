@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <h1>Micro Blog</h1>
+            <Link to="/">
+                <h1>Micro Blog</h1>
+            </Link>
             <div className="links">
                 {/* use Link from react-router-dom so that react handles routes only in the browser client side and prevent the need to hit the server repeatedly 
                 The Link tag pevents an anchor tags call to the server and reroutes it with a react route*/}

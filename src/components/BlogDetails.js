@@ -1,5 +1,5 @@
 import { useParams, useHistory } from "react-router-dom";
-import useFetch from "./useFetch";
+import useFetch from "../utils/useFetch";
 
 const BlogDetails = () => {
     //this allows ups to grab parameters from the URL routes with destructuring
