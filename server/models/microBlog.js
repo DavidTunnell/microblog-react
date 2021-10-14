@@ -3,17 +3,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const microBlogSchema = new Schema({
-    day: {
+    createdAt: {
         type: Date,
         default: Date.now,
     },
-    exercises: [
-        {
-            title: String,
-            body: String,
-            author: String,
-        },
-    ],
+    title: String,
+    body: String,
+    author: String,
 });
 
 // microBlogSchema.methods.getTotalDuration = function () {
