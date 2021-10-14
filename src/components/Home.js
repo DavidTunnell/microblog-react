@@ -6,7 +6,7 @@ const Home = () => {
         data: blogs,
         isPending,
         error,
-    } = useFetchRead("http://localhost:8000/blogs");
+    } = useFetchRead(process.env.REACT_APP_BASE_URL + "/api/blogs");
     return (
         <div className="home">
             {/* conditional rendering for error message to user*/}

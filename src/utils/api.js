@@ -16,7 +16,7 @@ const fetchCreate = (url, blog) => {
 };
 
 const fetchDelete = (url, id) => {
-    return fetch("http://localhost:8000/blogs/" + id, {
+    return fetch(url + id, {
         method: "DELETE",
     })
         .then((res) => {
