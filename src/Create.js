@@ -1,7 +1,43 @@
+import { useState } from "react";
 const Create = () => {
+    //controlled inputs are a way where values can be tracked for web forms in react
+    //input fields are kept in sync with state
+    const [title, setTitle] = useState("");
+    const [body, setBody] = useState("");
+    const [author, setAuthor] = useState("Mario");
+
     return (
         <div className="create">
-            <h2>Post a New Micro Blog.</h2>
+            <h2>Post a New Micro Blog</h2>
+            <form>
+                <label>Blog title:</label>
+                {/*associate the value of the input with the state variables with value={title} and on 
+                change we need to update the state with onChange and pass an anonymous function*/}
+                <input
+                    type="text"
+                    required
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <label>Blog body:</label>
+                <textarea
+                    required
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                ></textarea>
+                <label>Blog author:</label>
+                <select
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                >
+                    <option value="Mario">Mario</option>
+                    <option value="Yoshi">Yoshi</option>
+                </select>
+                <button>Add Blog</button>
+                <p>{title}</p>
+                <p>{body}</p>
+                <p>by {author}</p>
+            </form>
         </div>
     );
 };
