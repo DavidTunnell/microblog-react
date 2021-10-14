@@ -1,15 +1,35 @@
 const router = require("express").Router();
 const { microBlog } = require("../models");
 
-router.get("/", (req, res) => {
-    console.log("server");
-    res.json("client");
-});
-
-//get most recent workout
 router.get("/blogs", (req, res) => {
     microBlog
         .find({})
+        .then((dbTransaction) => {
+            res.json(dbTransaction);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+});
+
+router.get("/blogs/:id", (req, res) => {
+    const id = req.params.id;
+    microBlog
+        .findOne({ _id: id })
+        .then((dbTransaction) => {
+            res.json(dbTransaction);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+});
+
+router.delete("/blogs/:id", function (req, res) {
+    const id = req.params.id;
+    microBlog
+        .find({ _id: id })
+        .deleteOne()
+        .exec()
         .then((dbTransaction) => {
             res.json(dbTransaction);
         })

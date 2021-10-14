@@ -9,13 +9,14 @@ const BlogDetails = () => {
         data: blog,
         error,
         isPending,
-    } = useFetchRead("http://localhost:8000/blogs/" + id);
+    } = useFetchRead(process.env.REACT_APP_BASE_URL + "/api/blogs/" + id);
     const history = useHistory();
-
     const handleClick = () => {
-        fetchDelete("http://localhost:8000/blogs/", id).then(() => {
-            history.push("/");
-        });
+        fetchDelete(process.env.REACT_APP_BASE_URL + "/api/blogs/", id).then(
+            () => {
+                history.push("/");
+            }
+        );
     };
 
     return (
