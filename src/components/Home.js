@@ -1,12 +1,12 @@
 import BlogList from "../components/BlogList";
-import useFetch from "../utils/useFetch";
+import useFetchRead from "../utils/useFetchRead";
 
 const Home = () => {
     const {
         data: blogs,
         isPending,
         error,
-    } = useFetch("http://localhost:8000/blogs");
+    } = useFetchRead("http://localhost:8000/blogs");
     return (
         <div className="home">
             {/* conditional rendering for error message to user*/}

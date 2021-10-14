@@ -1,5 +1,6 @@
 import { useParams, useHistory } from "react-router-dom";
-import useFetch from "../utils/useFetch";
+import useFetchRead from "../utils/useFetchRead";
+import { fetchDelete } from "../utils/api";
 
 const BlogDetails = () => {
     //this allows ups to grab parameters from the URL routes with destructuring
@@ -8,13 +9,11 @@ const BlogDetails = () => {
         data: blog,
         error,
         isPending,
-    } = useFetch("http://localhost:8000/blogs/" + id);
+    } = useFetchRead("http://localhost:8000/blogs/" + id);
     const history = useHistory();
 
     const handleClick = () => {
-        fetch("http://localhost:8000/blogs/" + blog.id, {
-            method: "DELETE",
-        }).then(() => {
+        fetchDelete("http://localhost:8000/blogs/", id).then(() => {
             history.push("/");
         });
     };

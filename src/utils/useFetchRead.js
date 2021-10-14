@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //custom hooks in react must start with 'use' or it wont work
-const useFetch = (url) => {
+const useFetchRead = (url) => {
     //the state of a component refers to the data being used by a component at a point in time
     //you must use state and not variables because it wont update the page
     //this is because you must use reactive variables (variables that react looks at to check/watch for state change)
@@ -50,4 +50,4 @@ const useFetch = (url) => {
     return { data, isPending, error };
 };
 
-export default useFetch;
+export default useFetchRead;

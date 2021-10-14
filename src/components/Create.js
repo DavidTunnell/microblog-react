@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+// import fetchCreate from "../utils/fetchCreate";
+import { fetchCreate } from "../utils/api";
 const Create = () => {
     //controlled inputs are a way where values can be tracked for web forms in react
     //input fields are kept in sync with state
@@ -18,12 +19,7 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch("http://localhost:8000/blogs", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(blog),
-        }).then(() => {
-            console.log("New Blog added.");
+        fetchCreate("http://localhost:8000/blogs/", blog).then(() => {
             setIsPending(false);
             //add the homepage to the history array so that the user is forwarded there after submit
             history.push("/");
