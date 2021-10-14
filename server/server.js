@@ -1,24 +1,37 @@
 const express = require("express");
-const app = express(); // create express app
+const mongoose = require("mongoose");
+// const routes = require("./routes");
 const path = require("path");
+require("dotenv").config();
 
-// app.get("/", (req, res) => {
-//     res.send("This is from express.js");
-// });
+const PORT = process.env.PORT || 3001;
 
-// app.get("/", (req, res) => {
-//     res.sendFile(path.join(__dirname, "public", "index.html"));
-// });
+const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//serve react build folder
 app.use(express.static(path.join(__dirname, "..", "build")));
-// app.use(express.static("public"));
 
 //when the request comes to the server for any route and route you’re trying to access does not exist on the server-side go to the node build/index.html file
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
-// start express server on port 5000
-app.listen(5000, () => {
-    console.log("server started on port 5000");
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/" + process.env.DB_NAME,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // useCreateIndex: true,
+        // useFindAndModify: false,
+    }
+);
+
+// Sets up the routes
+// app.use(routes);
+
+app.listen(PORT, () => {
+    console.log(`Node running at: http://localhost:${PORT}`);
 });
