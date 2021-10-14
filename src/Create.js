@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 const Create = () => {
     //controlled inputs are a way where values can be tracked for web forms in react
     //input fields are kept in sync with state
@@ -6,6 +8,8 @@ const Create = () => {
     const [body, setBody] = useState("");
     const [author, setAuthor] = useState("Mario");
     const [isPending, setIsPending] = useState(false);
+    //use history allows access to url history and the ability to update it (ex: redirect after an action)
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +25,8 @@ const Create = () => {
         }).then(() => {
             console.log("New Blog added.");
             setIsPending(false);
+            //add the homepage to the history array so that the user is forwarded there after submit
+            history.push("/");
         });
     };
 
