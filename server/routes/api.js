@@ -4,6 +4,7 @@ const { microBlog } = require("../models");
 router.get("/blogs", (req, res) => {
     microBlog
         .find({})
+        .sort({ createdAt: "desc" })
         .then((dbTransaction) => {
             res.json(dbTransaction);
         })
@@ -47,16 +48,14 @@ router.post("/blogs/", (req, res) => {
             author: req.body.author,
         },
     ];
-    microBlog
-        .create(blog, function (err, results) {
-            res.send(results);
-        })
-        .catch((err) => {
+    microBlog.create(blog, function (err, results) {
+        if (err) {
             res.status(400).json(err);
-        });
+        }
+        res.send(results);
+    });
 });
 
-// //update a workout (add exercise to existing workout)
 // router.put("/workouts/:id", (req, res) => {
 //     Workout.findOneAndUpdate(
 //         { _id: req.params.id },
