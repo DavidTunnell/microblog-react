@@ -1,95 +1,45 @@
-github: https://github.com/iamshaunjp/Complete-React-Tutorial/tree/lesson-2
-Youtube: https://www.youtube.com/watch?v=j942wKiXFu8&ab_channel=TheNetNinja
+## Node.js, Express.js, Mongoose - React Build / API Server
 
-https://themes.getbootstrap.com/preview/?theme_id=6122
-https://themes.getbootstrap.com/preview/?theme_id=17640
+This portion of the repo is for the node.js server that does several things:
 
-http://kaffeine.herokuapp.com/
+-   Serves the React front end application via build folder
+-   Connects to a MongoDB NoSQL database for data persistence
+-   Models, connects and interacts with data/database using Mongoose
+-   Provides an API for CRUD operations to the database server for the react application
+-   Seed functionality to populate the collection with documents
+-   Nodemon for more pleasant development
 
-https://github.com/jesperorb/json-server-heroku#create-your-database
-^ host json-server dev tool using heroku
+### Installation
 
-## Installation
+This project folder will need its own independent running of `npm install` to get node_module dependencies. Rename `.env.EXAMPLE` to `.env` so that the database name is available for local development. It's assumed you already have MongoDB running on your development computer. Run `npm run seed` in this folder to seed the database. As is present in the script section of `package.json` there are several other available commands as well. `npm run start` will start the server but for development `npm run dev` is recommended.
 
-npm install
+As far as deploying, the react project (root directory) contains the start command needed to both build the react app and run the node server.
 
-npm install -g json-server
+## API Calls
 
-and
+Followed are the available API calls which are completely independent of the front end. If this is deployed replace `http://localhost:8000` with the correct domain information.
 
-npm run pseudoApi
+-   GET - http://localhost:8000/api/blogs/ - Get all microblogs
+-   GET - http://localhost:8000/api/blogs/id - Get a specific microblog by id
+    -   Example return:
+    ```
+        {
+            "_id": "6168c32df1af5d117bfa154b",
+            "createdAt": "2021-10-12T23:54:21.147Z",
+            "title": "The standard Lorem Ipsum passage, used since the 1500s",
+            "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "author": "Mario"
+        }
+    ```
+-   DELETE - http://localhost:8000/api/blogs/id - Delete a specific microblog by id
+-   POST - http://localhost:3001/api/feeds/ - create a new microblog
 
-or
+    -   Body JSON example:
 
-npx json-server --watch ./data/db.json --port 8000
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ```
+        {
+            "title": "Example title",
+            "body": "Example details.",
+            "author": "Mario"
+        }
+    ```
