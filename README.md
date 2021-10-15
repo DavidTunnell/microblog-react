@@ -2,7 +2,7 @@
 
 Microblog is a fullstack MERN app that allows for submitting, as might be expected, microblog posts. It was based on the '[Full Modern React Tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)' and then modified to replace the json-server pseudo-database to a full MongoDB. Thus it has it's own node server. More details can be found in the [server folder](https://github.com/DavidTunnell/microblog-react-router-mongodb-mongoose-node-express/tree/main/server).
 
-[A live demo can be found here.](http://calm-spire-46453.herokuapp.com/)
+[A live demo can be found here.](https://sheltered-river-02202.herokuapp.com/)
 
 It has the following features and functionality.
 
