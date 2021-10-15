@@ -20,7 +20,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "post-install-server": "npm install --prefix ./server",
-        "post-install-seed": "npm run seed --prefix ./server"
+        "post-install-seed": "npm run seed --prefix ./server",
+        "test-command": "cd server && npm i && npm run seed && npm start"
     },
     "eslintConfig": {
         "extends": [
