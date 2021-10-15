@@ -27,6 +27,9 @@ function App() {
                             <BlogDetails />
                         </Route>
                         {/* all other routes go to a 404 page - must be at bottom*/}
+                        <Route path="/404">
+                            <NotFound />
+                        </Route>
                         <Route path="*">
                             <NotFound />
                         </Route>

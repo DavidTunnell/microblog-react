@@ -19,11 +19,13 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetchCreate("http://localhost:8000/blogs/", blog).then(() => {
-            setIsPending(false);
-            //add the homepage to the history array so that the user is forwarded there after submit
-            history.push("/");
-        });
+        fetchCreate(process.env.REACT_APP_BASE_URL + "/api/blogs/", blog).then(
+            () => {
+                setIsPending(false);
+                //add the homepage to the history array so that the user is forwarded there after submit
+                history.push("/");
+            }
+        );
     };
 
     return (
