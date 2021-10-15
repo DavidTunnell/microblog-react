@@ -19,7 +19,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "postinstall": "npm install --prefix ./server"
+        "post-install-server": "npm install --prefix ./server",
+        "post-install-seed": "npm run seed --prefix ./server"
     },
     "eslintConfig": {
         "extends": [

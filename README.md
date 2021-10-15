@@ -2,7 +2,7 @@
 
 Microblog is a fullstack MERN app that allows for submitting, as might be expected, microblog posts. It was based on the '[Full Modern React Tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)' and then modified to replace the json-server pseudo-database to a full MongoDB. Thus it has it's own node server. More details can be found in the [server folder](https://github.com/DavidTunnell/microblog-react-router-mongodb-mongoose-node-express/tree/main/server).
 
-[A live demo can be found here.](https://desolate-oasis-16495.herokuapp.com/)
+[A live demo can be found here.](http://calm-spire-46453.herokuapp.com/)
 
 It has the following features and functionality.
 
@@ -40,7 +40,7 @@ This repo consists of two independent projects that, for development at least, n
 
 Then in a separate terminal navigate to the server folder. This project folder will need its own independent running of `npm install` to get node_module dependencies. Rename .`env.EXAMPLE` to `.env` so that the database name is available for local development. It's assumed you already have MongoDB running on your development computer. Run `npm run seed` in this folder to seed the database. As is present in the script section of `package.json` there are several other available commands as well. `npm run start` will start the server but for development `npm run dev` is recommended.
 
-As far as deploying, the react project (root directory) contains the start command needed to both build the react app and run the node server.
+As far as deploying, the react project (root directory) contains the start command needed to both build the react app and run the node server. However, it may not be easily accessible so the following two commands should be run via Heroku or other cloud server provider. First run npm run `post-install-server` to install the servers node modules and then `post-install-seed` to seed the database.
 
 ## API Calls
 
