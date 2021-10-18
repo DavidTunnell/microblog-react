@@ -17,7 +17,7 @@ It has the following features and functionality.
 -   Utilization of AbortController to prevent errors based on user entry
 -   API error handling on both client and server side
 -   Dynamic URL routing via [react-router-dom](https://www.npmjs.com/package/react-router-dom)
--   Data persistence using [MongoDB](https://www.mongodb.com/) and [MongoDB](https://www.mongodb.com/)
+-   Data persistence using [MongoDB](https://www.mongodb.com/)
 -   Serves the React front end application via build folder
 -   Connects to a MongoDB NoSQL database for data persistence
 -   Models, connects and interacts with data/database using Mongoose
